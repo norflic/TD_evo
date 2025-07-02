@@ -1,24 +1,35 @@
-import * as THREE from 'three';
+import { Boot } from './scenes/Boot';
+import { MyGame } from './scenes/MyGame.js';
+import { Game } from 'phaser';
+import { GameOver } from './scenes/GameOver';
+import { MainMenu } from './scenes/MainMenu';
+import { Preloader } from './scenes/Preloader';
+import { Map } from './scenes/Map';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+//  Find out more information about the MyGame Config at: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
+const config = {
+    type: Phaser.AUTO,
+    width: 1024,
+    height: 768,
+    parent: 'game-container',
+    backgroundColor: '#028af8',
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 400 }
+        }
+    },
+    scene: [
+        Boot,
+        Preloader,
+        MainMenu,
+        Map,
+        GameOver
+    ]
+};
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-
-camera.position.z = 5;
-
-
-function animate() {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    renderer.render( scene, camera );
-}
-renderer.setAnimationLoop( animate );
-
+export default new Game(config);
