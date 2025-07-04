@@ -32,16 +32,6 @@ export class MyGame extends Scene
 
     }
 
-    spawnEnnemies ()
-    {
-        // const x = Phaser.Math.Between(128, 896);
-        // const y = Phaser.Math.Between(0, -400);
-        //
-        // const coin = this.physics.add.sprite(x, y, 'coin').play('rotate');
-        //
-        // this.enemies.push(coin);
-    }
-
     update ()
     {
         this.timeText.setText('Time: ' + Math.ceil(this.timer.getRemainingSeconds()));

@@ -15,6 +15,11 @@ This is a simple coin clicker game. The goal is to click the coin as many times 
 - tours
 - ennemi
 
+idees poussees
+- pathfinding
+- ennemis volants
+- quand vitesse de projectiles trop rapides, lazers
+
 https://phaser.io/news/2018/12/tower-defense-tutorial
 https://gamedevacademy.org/how-to-make-tower-defense-game-with-phaser-3/
 

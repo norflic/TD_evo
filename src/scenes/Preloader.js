@@ -37,6 +37,11 @@ export class Preloader extends Scene
         this.load.atlas('coin', 'coin.png', 'coin.json');
         this.load.image('btn_jouer', 'btn_jouer.png');
 
+
+        // chargement des ennemuis:
+        this.load.image('enemy', 'ennemies/enemy.png');
+
+
     }
 
     create ()
