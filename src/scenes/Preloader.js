@@ -35,12 +35,15 @@ export class Preloader extends Scene
         this.load.image('background', 'background.png');
         this.load.image('logo', 'cc-logo.png');
         this.load.atlas('coin', 'coin.png', 'coin.json');
-        this.load.image('btn_jouer', 'btn_jouer.png');
+        this.load.image('btn_jouer', 'btn_jouer1.png');
 
 
         // chargement des ennemuis:
-        this.load.image('enemy', 'ennemies/enemy.png');
-
+        // this.load.image('enemy', 'ennemies/enemy.png');
+        this.load.spritesheet('enemy', 'ennemies/enemy.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
 
     }
 

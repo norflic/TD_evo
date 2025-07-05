@@ -10,6 +10,10 @@ export class Level extends Scene {
 
     create() {
         this.enemies = []
+        this.numberOfEnemies = 1;
+        this.enemysAnimation = [{'name': 'duck', 'length': 8}, {'name': 'panda', 'length': 3}, {'name': 'dog', 'length': 6}, {'name': 'penguin', 'length': 4}];
+
+
         this.enemiesPath = [
             {x: 96, y: -32},
             {x: 96, y: 164},
@@ -22,26 +26,8 @@ export class Level extends Scene {
         this.drawPath()
 
         this.spawnEnnemies()
-    }
 
-    spawnEnnemies() {
-        // const x = Phaser.Math.Between(128, 896);
-        // const y = Phaser.Math.Between(0, -400);
-        console.log('les ennemis sont appeles');
-        // utile car le this est redefini dans le setInterval
-        var levelEntity = this
-
-        var i = 0
-        var enemysBcl = setInterval(function () {
-            if (i < 5) {
-                var enemy = new Enemy(levelEntity, 100, 100, 'enemy', null, levelEntity.enemiesPath);
-                levelEntity.add.existing(enemy);
-                levelEntity.enemies.push(enemy);
-            } else {
-                clearTimeout(enemysBcl);
-            }
-            i++;
-        }, 1000);
+        this.events.on('enemyPathFinished', this.onEnemyPathFinished, this);
     }
 
 
@@ -81,5 +67,42 @@ export class Level extends Scene {
     gameOver() {
 
     }
+
+    //
+    // -------------- Gestion des ennemis ------------------
+    //
+
+    spawnEnnemies() {
+        console.log('les ennemis sont appeles');
+        // levelEntity est utile car le this est redefini dans le setInterval
+        var levelEntity = this
+
+        var i = 0
+        var enemysBcl = setInterval(function () {
+            console.log(i)
+            if (i < levelEntity.numberOfEnemies) {
+                var actualEnemyAnimationLength = levelEntity.enemysAnimation[0].length;
+                var enemy = new Enemy(levelEntity, 'enemy', null, actualEnemyAnimationLength, levelEntity.enemiesPath);
+                levelEntity.add.existing(enemy);
+                levelEntity.enemies.push(enemy);
+            } else {
+                clearTimeout(enemysBcl);
+            }
+            i++;
+        }, 1000);
+    }
+
+    /**
+     * supprime l'ennemi de la liste pour qu'il ne soit pas update
+     * @param enemy
+     */
+    onEnemyPathFinished(enemy) {
+        // Retirer de la liste
+        const index = this.enemies.indexOf(enemy);
+        if (index > -1) {
+            this.enemies.splice(index, 1);
+        }
+    }
+
 
 }

@@ -33,7 +33,8 @@ export class MainMenu extends Scene
 
         this.add.text(512, 550, instructions, textStyle).setAlign('center').setOrigin(0.5);
 
-        const btn_jouer = this.add.image(512, 600, 'btn_jouer').setInteractive();
+        const btn_jouer = this.add.image(512, 650, 'btn_jouer').setInteractive();
+        btn_jouer.setScale(0.2); // x2 sur largeur et hauteur
 
         btn_jouer.on('pointerdown', () => {
             console.log('Bouton cliqué !');
