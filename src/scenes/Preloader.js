@@ -38,12 +38,17 @@ export class Preloader extends Scene
         this.load.image('btn_jouer', 'btn_jouer1.png');
 
 
-        // chargement des ennemuis:
+        // chargement des ennemis:
         // this.load.image('enemy', 'ennemies/enemy.png');
         this.load.spritesheet('enemy', 'ennemies/enemy.png', {
             frameWidth: 32,
             frameHeight: 32
         });
+
+        // chargement pour la map
+        this.load.image('tiles', 'tiles/tmw_desert_spacing.png');
+        this.load.tilemapTiledJSON('desert', 'tiles/tower-defense.json');
+
 
     }
 
@@ -65,6 +70,8 @@ export class Preloader extends Scene
             frameRate: 10
         });
 
+
+
         //  When all the assets are loaded go to the next scene.
         //  We can go there immediately via: this.scene.start('MainMenu');
         //  Or we could use a Scene transition to fade between the two scenes:
@@ -78,6 +85,5 @@ export class Preloader extends Scene
             }
         });
 
-        //  When the transition completes, it will move automatically to the MainMenu scene
     }
 }

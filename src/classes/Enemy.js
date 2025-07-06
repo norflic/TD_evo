@@ -53,7 +53,7 @@ export class Enemy extends Phaser.GameObjects.Sprite {
         // Déplacement en fonction du temps (delta en ms)
         const dirX = dx / distance_to_point;
         const dirY = dy / distance_to_point;
-        console.log("dirX="+ dirX+"     dirY=" +dirY)
+        // console.log("dirX="+ dirX+"     dirY=" +dirY)
 
         this.x += dirX * this.enemySpeed ;
         this.y += dirY * this.enemySpeed;

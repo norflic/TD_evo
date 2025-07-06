@@ -1,5 +1,4 @@
 import { Boot } from './scenes/Boot';
-import { MyGame } from './scenes/MyGame.js';
 import { Game } from 'phaser';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
