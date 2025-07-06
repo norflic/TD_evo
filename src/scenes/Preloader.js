@@ -46,7 +46,11 @@ export class Preloader extends Scene
         });
 
         // chargement pour la map
-        this.load.image('tiles', 'tiles/tmw_desert_spacing.png');
+        // this.load.image('tiles', 'tiles/tmw_desert_spacing.png');
+        this.load.spritesheet('tiles', 'tiles/tmw_desert_spacing.png', {
+            frameWidth: 32,
+            frameHeight: 32
+        });
         this.load.tilemapTiledJSON('desert', 'tiles/tower-defense.json');
 
 

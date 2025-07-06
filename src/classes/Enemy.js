@@ -13,9 +13,9 @@ export class Enemy extends Phaser.GameObjects.Sprite {
      * @param frame
      * @param animationLength
      * @param path
-     */
-    constructor(scene, texture, frame, animationLength,  path) {
-            var firstPosition = path[0]
+     * */
+    constructor(scene, texture, frame, animationLength, path) {
+        var firstPosition = path[0]
         super(scene, firstPosition.x, firstPosition.y, texture, frame);
         this.path = path;
         // this.animations.add('walk');
@@ -28,7 +28,7 @@ export class Enemy extends Phaser.GameObjects.Sprite {
             repeat: -1
         });
         this.play('walk'); // Lance l’animation définie par la scène
-
+        scene.cameras.main.ignore(this);
     }
 
 
