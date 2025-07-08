@@ -1,7 +1,7 @@
 import {Scene} from "phaser";
 import {Enemy} from "../classes/Enemy.js";
 import {Tile} from "../classes/Tile.js";
-import LevelSideBar from "../Components/LevelSideBar.js";
+import LevelSideBar from "../UIComponents/LevelSideBar.js";
 
 
 export class Level extends Scene {
@@ -23,12 +23,17 @@ export class Level extends Scene {
             'name': 'dog',
             'length': 6
         }, {'name': 'penguin', 'length': 4}];
+        // taille case : 32 px
         this.enemiesPath = [
-            {x: 96, y: 0},
-            {x: 96, y: 164},
-            {x: 480, y: 164},
-            {x: 480, y: 544},
-        ]
+            { x: 0, y: 385 },
+            { x: 160, y: 385 },
+            { x: 160, y: 257 },
+            { x: 416, y: 257 },
+            { x: 416, y: 513 },
+            { x: 672, y: 513 },
+            { x: 672, y: 417 },
+            { x: 800, y: 417 },
+        ];
         // utilise tower-defense.json et tmw_desert_spacing.png pour afficher la carte
         this.map = this.make.tilemap({key: 'desert'});
         this.mapTileset = this.map.addTilesetImage('Desert', 'tiles');
@@ -39,7 +44,13 @@ export class Level extends Scene {
 
         this.spawnEnnemies()
 
-        new LevelSideBar(this, this.scale.width - 100, 0, 100, this.scale.height, 5);
+        const selectedTowers = [
+            "basic",
+            "basic",
+            "basic",
+            "basic",
+        ]
+        new LevelSideBar(this, this.scale.width - 100, 0, selectedTowers)
 
         this.mapMoovements()
 

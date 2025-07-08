@@ -1,9 +1,15 @@
 import Phaser from "phaser";
+import {SlotBuilder} from "./SlotBuilder.js";
 
 export default class LevelSideBar extends Phaser.GameObjects.Container {
     width = 100
-    constructor(scene, x, y) {
+    selectedItem = null;
+
+    constructor(scene, x, y, towerNames) {
         super(scene, x, y);
+        this.slots = []
+        this.children = this.slots
+        this.towerNames  = towerNames;
         // const posXInScene = scene.scale.width - this.width;
 
         this.container = scene.add.container(x, y);
@@ -15,18 +21,26 @@ export default class LevelSideBar extends Phaser.GameObjects.Container {
 
         this.setScrollFactor(0);
 
-        // for (let i = 0; i < nbTowers; i++) {
-        //     const slot = scene.add.rectangle(
-        //         this.width / 2,
-        //         scene.scale.height + 60 + i * 80,
-        //         this.width - 20,
-        //         60,
-        //         0x444444
-        //     ).setStrokeStyle(2, 0xffffff);
-        //
-        //     this.container.add(slot);
-        //     this.slots.push(slot);
-        // }
+        this.addSlots(scene)
+    }
+
+    addSlots(scene) {
+        console.log("j'ajoute les slots")
+        const builder = new SlotBuilder(scene, this.x, this.y, this.width - 50);
+        for (let i = 0; i < this.towerNames.length; i++) {
+            let slot = builder.createTowerSlot("basic", this.width, i);
+            slot.on('towerSlotClicked', (tower, index) => {
+                console.log("Slot cliqué :", tower, index);
+                this.selectedItem = tower;
+            });
+            // let tourActuelle = new Tower()
+
+            // console.log("je place une tour a la position")
+            // console.log("x = " + posXSlot + ", y = " + posYSlot);
+
+            this.add(slot);
+            this.slots.push(slot);
+        }
         scene.levelCam.ignore(this);
         scene.add.existing(this);
     }
@@ -47,5 +61,9 @@ export default class LevelSideBar extends Phaser.GameObjects.Container {
         });
 
         this.container.add(icon);
+    }
+
+    toweSlotClicked(){
+
     }
 }

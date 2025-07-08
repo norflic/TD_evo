@@ -27,6 +27,9 @@ export class Preloader extends Scene
         });
     }
 
+    /**
+     * s'occupe du chargement des textures
+     */
     preload ()
     {
         //  Load the assets for the game - Replace with the path to your own assets
@@ -39,11 +42,14 @@ export class Preloader extends Scene
 
 
         // chargement des ennemis:
-        // this.load.image('enemy', 'ennemies/enemy.png');
         this.load.spritesheet('enemy', 'ennemies/enemy.png', {
             frameWidth: 32,
             frameHeight: 32
         });
+
+        // chargement des tours
+        this.load.json('towerData', 'towers/towerData.json');
+        this.load.image('basic', 'towers/basic.png');
 
         // chargement pour la map
         // this.load.image('tiles', 'tiles/tmw_desert_spacing.png');
@@ -52,7 +58,6 @@ export class Preloader extends Scene
             frameHeight: 32
         });
         this.load.tilemapTiledJSON('desert', 'tiles/tower-defense.json');
-
 
     }
 
@@ -74,6 +79,9 @@ export class Preloader extends Scene
             frameRate: 10
         });
 
+        // console.log("j'initialise TowerDataManager avec une scene")
+        // console.log(this)
+        // new TowerDataManager(this);
 
 
         //  When all the assets are loaded go to the next scene.

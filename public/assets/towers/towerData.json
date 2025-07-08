@@ -1,0 +1,45 @@
+{
+  "basic": {
+    "description": "Une tour simple avec des dégâts modérés.",
+    "baseCost": 100,
+    "minCost": 20,
+    "texture": "basic",
+    "stats": {
+      "baseDamage": 10,
+      "baseRange": 120,
+      "baseFireRate": 1.0,
+      "projectileSpeed": 300
+    },
+    "effects": [],
+    "upgrades": {
+      "comment":"the keys define the tower level needed tu get the upgrade",
+      "1": {
+        "name": "damage",
+        "description": "pas de prise de tete, juste des degats",
+        "stats": {
+          "damageMult": 1.5,
+          "fireRateMult": 0.9
+        }
+      },
+      "3": {
+        "name": "sniper",
+        "description": "sniper",
+        "stats": {
+          "damageMult": 3,
+          "fireRate": 0.2,
+          "range": 2
+        }
+      },
+      "7": {
+        "name": "cannon",
+        "description": "adds AOE damage",
+        "stats": {
+          "fireRate": 0.7,
+          "range": 0.7,
+          "AOERadius": "1",
+          "AOEDamage": 0.2
+        }
+      }
+    }
+  }
+}
